@@ -46,7 +46,7 @@ jobs:
             return uniqueModuleNames;
 
   update-readme:
-    name: Update README for {{ matrix.module }}
+    name: Update README for ${{ matrix.module }}
     runs-on: ubuntu-latest
     needs: find-changes
     strategy:
@@ -68,7 +68,7 @@ jobs:
           git-push: "true"
 
   validate-module:
-    name: Validate {{ matrix.module }}
+    name: Validate ${{ matrix.module }}
     runs-on: ubuntu-latest
     needs: find-changes
     strategy:
@@ -80,6 +80,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
       - run: terraform init
       - run: terraform fmt -diff -check
       - run: terraform validate
