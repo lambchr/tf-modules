@@ -66,6 +66,7 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: "true"
+          git-commit-message: auto update ${{ matrix.module }} README.md
 
   validate-module:
     name: Validate ${{ matrix.module }}
