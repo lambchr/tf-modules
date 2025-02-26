@@ -4,7 +4,7 @@ locals {
   security_group_ids = concat(var.security_group_ids, [aws_security_group.this.id])
 }
 
-data "aws_vpc_endpoint_service" "this" {
+data "aws_vpc_endpoint_service" "other" {
   for_each = local.endpoints
 
   service      = try(each.value.service, null)
