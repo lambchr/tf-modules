@@ -25,8 +25,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           script: |
-            const { Octokit } = require("@octokit/action");
-            const { execSync } = require('child_process');
+            const { Octokit } = import("@octokit/action");
+            const { execSync } = import('child_process');
             const octokit = new Octokit()
             const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
             const latestRelease = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
