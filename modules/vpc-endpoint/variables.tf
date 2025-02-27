@@ -59,7 +59,7 @@ variable "security_group_rules" {
 }
 
 variable "security_group_tags" {
-  description = "A map of additional tags to add to the security group created. Bump 2"
+  description = "A map of additional tags to add to the security group created."
   type        = map(string)
   default     = {}
 }
