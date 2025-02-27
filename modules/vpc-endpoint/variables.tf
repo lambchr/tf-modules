@@ -1,5 +1,5 @@
 variable "vpc_id" {
-  description = "The ID of the VPC in which the endpoint will be used"
+  description = "The ID of the VPC in which the endpoint will be used bump"
   type        = string
   default     = null
 }
