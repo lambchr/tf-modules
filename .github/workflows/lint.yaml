@@ -1,4 +1,4 @@
-name: Lint
+name: Conventional Commits
 on:
   pull_request:
     types: 
@@ -11,10 +11,37 @@ on:
 permissions:
   pull-requests: read
 jobs:
-  main:
-    name: Validate PR Title Conventional Commit
+  pr-title:
+    name: PR Title
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  commits:
+    name: PR Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install required dependencies
+        run: |
+          apt update
+          apt install -y sudo
+          sudo apt install -y git curl
+          curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y nodejs
+      - name: Print versions
+        run: |
+          git --version
+          node --version
+          npm --version
+          npx commitlint --version
+      - name: Install commitlint
+        run: |
+          npm install conventional-changelog-conventionalcommits
+          npm install commitlint@latest
+      - name: Validate PR commits with commitlint
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
