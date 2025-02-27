@@ -28,11 +28,9 @@ jobs:
       - name: Get changed modules
         id: changed-modules
         uses: actions/github-script@v6.4.1
-        env:
-          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_modified_files }}
         with:
           script: |
-            const paths = "$ALL_CHANGED_FILES";
+            const paths = "${{ steps.changed-files.outputs.all_modified_files }}"
             const regex = /modules\/([^/]+)/g;
             const matches = paths.match(regex);
             if (!matches) {
