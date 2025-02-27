@@ -153,3 +153,9 @@ variable "override_default_tags" {
   type        = bool
   default     = false
 }
+
+variable "new_var" {
+  description = "Test new var."
+  type        = bool
+  default     = false
+}
