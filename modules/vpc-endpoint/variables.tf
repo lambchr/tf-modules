@@ -23,7 +23,7 @@ variable "subnet_ids" {
 }
 
 variable "tags" {
-  description = "A map of tags to use on all resources"
+  description = "A map of tags to use on all edit"
   type        = map(string)
   default     = {}
 }
