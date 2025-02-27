@@ -1,15 +1,21 @@
-name: Terraform Module Validate
+name: Terraform Module
 on:
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+    branches:
+      - main
     paths:
       - modules/**
 permissions:
-  pull-requests: write
   contents: write
-
+  pull-requests: write
 jobs:
   find-changes:
-    name: Find changed Terraform modules
+    name: Find changes
     runs-on: ubuntu-latest
     outputs:
       changed-modules: ${{ steps.changed-modules.outputs.result }}
@@ -25,7 +31,7 @@ jobs:
         with:
           files_ignore: '.github/workflows/**'
 
-      - name: Get changed modules
+      - name: Get changed Terraform modules
         id: changed-modules
         uses: actions/github-script@v6.4.1
         with:
@@ -86,3 +92,13 @@ jobs:
       - run: terraform init
       - run: terraform fmt -diff -check
       - run: terraform validate
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Terraform Module Releaser
+        uses: techpivot/terraform-module-releaser@v1
