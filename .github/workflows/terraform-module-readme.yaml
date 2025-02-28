@@ -1,0 +1,26 @@
+name: Terraform Module README
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - modules/**
+jobs:
+  update-readme:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          ref: main
+
+      - name: Render Terraform docs and commit changes
+        uses: terraform-docs/gh-actions@v1
+        with:
+          find-dir: modules
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+          git-commit-message: "chore: auto update README.md files"
