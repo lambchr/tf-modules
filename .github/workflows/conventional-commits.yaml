@@ -1,0 +1,43 @@
+name: Conventional Commits
+on:
+  pull_request:
+    types: 
+      - opened
+      - reopened
+      - synchronize
+      - edited
+permissions:
+  pull-requests: read
+jobs:
+  pr-title:
+    name: PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  commits:
+    name: PR Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install commitlint
+        run: |
+          npm install conventional-changelog-conventionalcommits
+          npm install commitlint@latest
+          npm install --save-dev @commitlint/config-conventional @commitlint/cli
+      - name: Print versions
+        run: |
+          git --version
+          echo "node version $(node --version)"
+          echo "npm version $(npm --version)"
+          echo "commitlint version $(npx commitlint --version)"
+      - name: Validate
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
