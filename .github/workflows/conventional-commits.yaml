@@ -32,6 +32,7 @@ jobs:
         run: |
           npm install conventional-changelog-conventionalcommits
           npm install commitlint@latest
+          npm install --save-dev @commitlint/config-conventional @commitlint/cli
       - name: Print versions
         run: |
           git --version
