@@ -28,15 +28,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 14
-      - name: Print versions
-        run: |
-          git --version
-          node --version
-          npm --version
-          npx commitlint --version
       - name: Install commitlint
         run: |
           npm install conventional-changelog-conventionalcommits
           npm install commitlint@latest
+      - name: Print versions
+        run: |
+          git --version
+          echo "node version $(node --version)"
+          echo "npm version $(npm --version)"
+          echo "commitlint version $(npx commitlint --version)"
       - name: Validate
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
