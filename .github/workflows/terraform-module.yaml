@@ -115,8 +115,14 @@ jobs:
     steps:
       - name: Successful deploy
         if: ${{ !(contains(needs.*.result, 'failure')) }}
-        run: exit 0
+        run: |
+          echo "This job is checked by GitHub branch protection to ensure matrix jobs have completed successfully."
+          echo "Success means all jobs have passed and merge can happen."
+          exit 0
       - name: Failing deploy
         if: ${{ contains(needs.*.result, 'failure') }}
-        run: exit 1
+        run: |
+          echo "This job is checked by GitHub branch protection to ensure matrix jobs have completed successfully."
+          echo "Failure means another job has failed and should be resolved before a merge can happen."
+          exit 1
 

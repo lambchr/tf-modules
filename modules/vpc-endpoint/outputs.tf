@@ -5,7 +5,7 @@ output "endpoints" {
 
 output "endpoint_arn" {
   description = "VPC endpoint arns"
-  value       = aws_vpc_endpoint.thi[*].arn
+  value       = aws_vpc_endpoint.this[*].arn
 }
 
 output "security_group_arn" {
