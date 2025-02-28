@@ -1,5 +1,5 @@
 variable "create" {
-  description = "Whether to create this resource or not?"
+  description = "Whether to create this resource or not? B"
   type        = bool
   default     = true
 }
