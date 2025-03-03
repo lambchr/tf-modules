@@ -1,15 +1,5 @@
 name: Terraform Module
-on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
-    branches:
-      - main
-    paths:
-      - modules/**
+on: pull_request
 permissions:
   contents: write
   pull-requests: write
@@ -51,29 +41,6 @@ jobs:
             console.log(uniqueModuleNames);
             return uniqueModuleNames;
 
-  update-readme:
-    name: ${{ matrix.module }} README.md update
-    runs-on: ubuntu-latest
-    needs: find-changes
-    strategy:
-      matrix:
-        module: ${{ fromJson(needs.find-changes.outputs.changed-modules) }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Render terraform docs and push changes back to PR
-        uses: terraform-docs/gh-actions@v1
-        with:
-          working-dir: ${{ matrix.module }}
-          output-file: README.md
-          output-method: inject
-          git-push: "true"
-          git-commit-message: "chore(${{ matrix.module }}): auto update README.md"
-
   validate-module:
     name: ${{ matrix.module }} validate
     runs-on: ubuntu-latest
@@ -93,25 +60,11 @@ jobs:
       - run: terraform fmt -diff -check
       - run: terraform validate
 
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Terraform Module Releaser
-        uses: techpivot/terraform-module-releaser@v1
-
   # This allows us to have a branch protection rule for jobs with matrix.
-  # Jobs without a matrix have been included to simplify configuration in
-  # GitHub settings
   job-status:
     name: Status
     runs-on: ubuntu-latest
     needs:
-      - release
-      - update-readme
       - validate-module
     if: always()
     steps:
@@ -131,4 +84,3 @@ jobs:
           echo "This job is checked by GitHub branch protection to ensure matrix jobs have completed successfully."
           echo "Failure means another job has failed and should be resolved before a merge can happen."
           exit 1
-

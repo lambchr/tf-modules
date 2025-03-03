@@ -36,7 +36,7 @@ No modules.
 | <a name="input_content_encoding"></a> [content\_encoding](#input\_content\_encoding) | Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. | `string` | `null` | no |
 | <a name="input_content_language"></a> [content\_language](#input\_content\_language) | The language the content is in e.g. en-US or en-GB. | `string` | `null` | no |
 | <a name="input_content_type"></a> [content\_type](#input\_content\_type) | A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input. | `string` | `null` | no |
-| <a name="input_create"></a> [create](#input\_create) | Whether to create this resource or not? bump | `bool` | `true` | no |
+| <a name="input_create"></a> [create](#input\_create) | Whether to create this resource or not? B | `bool` | `true` | no |
 | <a name="input_etag"></a> [etag](#input\_etag) | Used to trigger updates. This attribute is not compatible with KMS encryption, kms\_key\_id or server\_side\_encryption = "aws:kms". | `string` | `null` | no |
 | <a name="input_file_source"></a> [file\_source](#input\_file\_source) | The path to a file that will be read and uploaded as raw bytes for the object content. | `string` | `null` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has S3 object lock enabled. | `bool` | `false` | no |
