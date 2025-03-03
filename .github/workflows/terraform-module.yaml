@@ -1,8 +1,5 @@
 name: Terraform Module
-on:
-  pull_request:
-    paths:
-      - modules/**
+on: pull_request
 permissions:
   contents: write
   pull-requests: write
@@ -87,4 +84,3 @@ jobs:
           echo "This job is checked by GitHub branch protection to ensure matrix jobs have completed successfully."
           echo "Failure means another job has failed and should be resolved before a merge can happen."
           exit 1
-
