@@ -16,10 +16,4 @@ permissions:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Terraform Module Releaser
-        uses: techpivot/terraform-module-releaser@v1
+    uses: lambchr/sre-workflows/.github/workflows/terraform-module-release.yaml@9d217f07a359c2440df5656eb61f4419e75b3b88

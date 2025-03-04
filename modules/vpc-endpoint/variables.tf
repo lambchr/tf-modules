@@ -5,7 +5,7 @@ variable "vpc_id" {
 }
 
 variable "endpoints" {
-  description = "A map of interface and/or gateway endpoints containing their properties and configurations. bump"
+  description = "A map of interface and/or gateway endpoints containing their properties and configurations."
   type        = any
   default     = {}
 }
