@@ -1,9 +1,0 @@
-name: Terraform Module Validate
-on: pull_request
-permissions:
-  contents: write
-  pull-requests: write
-jobs:
-  validate:
-    name: Validate
-    uses: lambchr/sre-workflows/.github/workflows/terraform-module-validate.yaml@9d217f07a359c2440df5656eb61f4419e75b3b88
