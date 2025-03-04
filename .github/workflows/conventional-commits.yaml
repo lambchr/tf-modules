@@ -11,7 +11,7 @@ permissions:
 jobs:
   lint:
     name: Lint
-    uses: lambchr/sre-workflows/workflows/conventional-commits/conventional-commits.yaml@65959c2507b737f099eceee6b0a2d6b434eb3bde
+    uses: lambchr/sre-workflows/.github/workflows/conventional-commits.yaml@07f2b015df99ef2957d8ddbd8bb4ddaef31547a5
     with:
       sha-from: ${{ github.event.pull_request.base.sha }}
       sha-to: ${{ github.event.pull_request.head.sha }}
