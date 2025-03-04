@@ -6,4 +6,4 @@ permissions:
 jobs:
   validate:
     name: Validate
-    uses: lambchr/sre-workflows/.github/workflows/terraform-module-validate.yaml@6aca11c428af90caaef320466090b11d4ccb341e
+    uses: lambchr/sre-workflows/.github/workflows/terraform-module-validate.yaml@9d217f07a359c2440df5656eb61f4419e75b3b88

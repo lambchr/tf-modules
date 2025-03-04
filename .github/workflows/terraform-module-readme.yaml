@@ -10,4 +10,4 @@ permissions:
 jobs:
   update-readme:
     name: Update
-    uses: lambchr/sre-workflows/.github/workflows/terraform-module-readme.yaml@07f2b015df99ef2957d8ddbd8bb4ddaef31547a5
+    uses: lambchr/sre-workflows/.github/workflows/terraform-module-readme.yaml@9d217f07a359c2440df5656eb61f4419e75b3b88
