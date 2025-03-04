@@ -1,4 +1,4 @@
-name: Terraform Module
+name: Terraform Module Validate
 on: pull_request
 permissions:
   contents: write
